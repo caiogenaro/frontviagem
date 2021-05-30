@@ -1,0 +1,85 @@
+<div class="container">
+  <div class="col-4" style="display: flex;
+  justify-content: space-between;">
+    <button type="button" (click)="cadastroCozinha()" class="btn btn-primary">Cadastrar Cozinha</button>
+    <button type="button" (click)="cadastroCidade()" class="btn btn-primary">Cadastrar Cidade</button>
+  </div>
+</div>
+
+
+<div *ngIf="isCadastroCozinha" class="cadastro container">
+  <form [formGroup]="formulario" (ngSubmit)="salvarCozinha()">
+    <h1>Cadastro de Cozinha</h1>
+
+    <div class="col">
+      <input
+        type="text"
+        class="form-control"
+        placeholder="First name"
+        formControlName="nome"
+        aria-label="First name"
+      />
+    </div>
+
+    <div class="p-col-1">
+      <button type="submit" class="btn btn-primary">Cadastrar Cozinha</button>
+    </div>
+  </form>
+</div>
+
+<div *ngIf="isCadastroCidade" class="cadastro container">
+  <form [formGroup]="formularioCidades" (ngSubmit)="salvarCidade()">
+    <div class="row">
+      <h1>Cadastro de Cidades</h1>
+
+      <div class="col-6">
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Nome da Cidade"
+          formControlName="nomeCidade"
+          aria-label="Nome Cidade"
+        />
+      </div>
+      <div class="col-6">
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Valor da Passagem"
+          formControlName="valorPassagem"
+          aria-label="Valor Passagem"
+        />
+      </div>
+      <div class="col-12">
+        <input
+          type="text"
+          class="form-control"
+          style="margin-top: 1rem !important;"
+          placeholder="URL da Foto da Cidade"
+          formControlName="fotoCidade"
+          aria-label="Foto Cidade"
+        />
+      </div>
+
+      <div class="col-12" style="display: flex; justify-content: space-between;" >
+        <div class="col-6">
+          <label for="exampleFormControlSelect">Selecione a Cozinha</label>
+          <select
+            formControlName="tipoCozinha"
+            class="form-control"
+            id="exampleFormControlSelect"
+            >
+            <option>Escolha uma Cozinha</option>
+            <option *ngFor="let cozinha of cozinhas">{{cozinha.id }} {{ cozinha.nome }}</option>
+          </select>
+        </div>
+
+        <div class="col-6" style="display: flex; justify-content: flex-end; margin-top: 23px !important;">
+          <button type="submit2" class="btn btn-primary">
+            Cadastrar Cidade
+          </button>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>

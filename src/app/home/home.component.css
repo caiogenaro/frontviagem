@@ -1,0 +1,13 @@
+.container{
+    padding: 1rem !important; 
+    margin-top: 1rem !important;
+}
+
+.cadastro{
+    border:1px solid black;
+
+}
+
+.btn{
+    height: 40px;
+}

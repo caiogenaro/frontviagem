@@ -1,0 +1,38 @@
+.row {
+  padding: 1rem;
+  text-align: center;
+}
+
+#content {
+  border: 1px solid black;
+  display: flex;
+  justify-content: center;
+  background-color: #a7ab51;
+}
+
+.card {
+  width: 250px;
+  height: 230px;
+  background-color: rgb(0, 0, 0);
+}
+
+
+.card-img-top {
+    position: absolute;
+    left: 50%;
+    height: 70%;
+    transform: translateX(-50%);
+    
+  }
+
+  h5 {
+    color: aliceblue;
+    position: absolute;
+    left: 50%;
+    top: 130px;
+    transform: translateX(-50%);
+  }
+
+  p{
+    font-weight: bold;
+  }
