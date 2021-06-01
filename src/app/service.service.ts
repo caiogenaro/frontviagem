@@ -15,19 +15,31 @@ export class Service {
 
 
 
+  // Gets
   listarCozinhas(): Observable<Cozinha[]> {
     return this.httpClient.get<Cozinha[]>(`${this.URL}/cozinha`);
   }
+
+  
   listarCidades() {
     return this.httpClient.get(`${this.URL}/cidades`).toPromise();
   }
   listarCidadesId(id: number) {
     return this.httpClient.get(`${this.URL}/cidades/${id}`).toPromise();
   }
+  listarCalculoMedia(id: number, dias: string) {
+
+    let data = {dias: dias};
+    
+    return this.httpClient.get(`${this.URL}/cidades/media/${id}`, {params: data}).toPromise();
+  }
+
+
+
+  //Posts
 
   incluirCozinha(cozinha: any){
-    let body = cozinha
-
+    
     let header = {
       headers: new HttpHeaders().set('Content-Type', 'application/json')
     }    
@@ -44,8 +56,7 @@ export class Service {
     );
   }
   incluirCidade(cidade: any){
-    let body = cidade
-
+    
     let header = {
       headers: new HttpHeaders().set('Content-Type', 'application/json')
     }    

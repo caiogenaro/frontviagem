@@ -22,7 +22,7 @@ export class HomeComponent implements OnInit {
     this.getCozinhas();
   }
 
-  //Tipo de Cadastro
+  //Tipo de Cadastro botao
   cadastroCozinha() {
     this.isCadastroCozinha = !this.isCadastroCozinha;
     this.isCadastroCidade = false;
@@ -36,7 +36,7 @@ export class HomeComponent implements OnInit {
     console.log(this.isCadastroCidade);
   }
 
-  // Iniciar o Modulo do FormGroup no Component
+  // Iniciar o Modulo e validacoes do FormGroup no Component
   iniciarFormCozinha() {
     this.formulario = this.formBuilder.group({
       nome: [
@@ -49,6 +49,8 @@ export class HomeComponent implements OnInit {
       ],
     });
   }
+
+  //Inicializar o modulo e validacoes dos formularios
   iniciarFormCidade() {
     this.formularioCidades = this.formBuilder.group({
       nomeCidade: [
@@ -88,7 +90,7 @@ export class HomeComponent implements OnInit {
     this.service.incluirCozinha(cozinha);
   }
   salvarCidade() {
-    //Destructuring para enviar para o Backend
+    //Restruturar para enviar para o Backend
     const cozinha = this.formularioCidades.value.tipoCozinha.split(' ');
     const cidade = {
       nome: this.formularioCidades.value.nomeCidade,

@@ -12,30 +12,44 @@ export class CidadeComponent implements OnInit {
   cidades: any;
 
   cidadesInfo: any = [];
+  media: any = [];
+  isMedia: Boolean = false;
 
   constructor(private formBuilder: FormBuilder, private service: Service) {}
 
   ngOnInit(): void {
-    this.getCidades(); 
+    this.getCidades();
   }
 
- async getCidades(){
+  iniciarFormMedia() {
+    this.media = this.formBuilder.group({
+      dias: [null, [Validators.required]]
+    });
+  }
+
+  //Pegar informaçoes das cidades
+  async getCidades() {
     this.cidades = await this.service.listarCidades();
-    console.log(this.cidades)
-
   }
 
-
-  async infoCidades(id: any){
-
+  //Metodo para Mostrar informações das cidades
+  async infoCidades(id: any) {
     const data = await this.service.listarCidadesId(id);
-    if(this.cidadesInfo){
+    if (this.cidadesInfo) {
       this.cidadesInfo = [];
-      this.cidadesInfo.push(data)
+      this.cidadesInfo.push(data);
+      this.isMedia = false;      
     }
-    console.log(this.cidadesInfo)
-
   }
 
-
+  //Calcular Media
+  async calcularMedia(id: any, dias: any) {
+    const data = await this.service.listarCalculoMedia(id, dias);
+    if (this.cidadesInfo) {
+      this.cidadesInfo = [];
+      this.cidadesInfo.push(data);
+      this.isMedia = true;
+    }
+    console.log(this.cidadesInfo);  
+  }
 }

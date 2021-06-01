@@ -1,20 +1,26 @@
-
-  <div class="row" style="justify-content: space-between;">
+<div class="container">
+  <div class="row" style="justify-content: space-between">
     <div class="col-8 row" id="content">
       <div *ngFor="let cidade of cidades" class="col-4 row">
         <div class="card">
-          <img src="{{cidade.foto}}" class="card-img-top" alt="..." />
+          <img src="{{ cidade.foto }}" class="card-img-top" alt="..." />
           <div class="card-body">
             <h5 class="card-title">{{ cidade.nome }}</h5>
-            <a (click)="infoCidades(cidade.id)" class="btn btn-primary" style="margin-top: 160px;">Informações</a>
+            <a
+              (click)="infoCidades(cidade.id)"
+              class="btn btn-primary"
+              style="margin-top: 160px"
+              >Informações</a
+            >
           </div>
         </div>
       </div>
-      <div class="col-12" style="justify-content: flex-end;
-      display: flex;">
+      <div class="col-12" style="justify-content: flex-end; display: flex">
         <nav aria-label="Page navigation example">
           <ul class="pagination">
-            <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+            <li class="page-item">
+              <a class="page-link" href="#">Previous</a>
+            </li>
             <li class="page-item"><a class="page-link" href="#">1</a></li>
             <li class="page-item"><a class="page-link" href="#">2</a></li>
             <li class="page-item"><a class="page-link" href="#">3</a></li>
@@ -23,24 +29,46 @@
         </nav>
       </div>
     </div>
-    <div class="col-3" id="content">
+    <div class="col-3" id="content-info">
       <div *ngFor="let cidadeinfo of cidadesInfo" class="col-12 row">
+        <div class="card" id="photo-info">
+          <img src="{{ cidadeinfo.foto }}" class="card-img-top" alt="..." />
+        </div>
         <div class="col-12 d-flex justify-content-around">
           <p class="font-weight-bold">Cidade:</p>
-          <p > {{cidadeinfo.nome}} </p>
+          <p>{{ cidadeinfo.nome }}</p>
         </div>
         <div class="col-12 d-flex justify-content-around">
           <p class="font-weight-bold">Valor:</p>
-          <p > {{cidadeinfo.valor}} </p>
+          <p>{{ cidadeinfo.valor }}</p>
         </div>
         <div class="col-12 d-flex justify-content-around">
           <p class="font-weight-bold">Comida:</p>
-          <p > {{cidadeinfo.cozinha.nome}} </p>
+          <p>{{ cidadeinfo.cozinha.nome }}</p>
         </div>
         <div class="col-12 d-flex justify-content-around">
           <p class="font-weight-bold">Id:</p>
-          <p > {{cidadeinfo.id}} </p>
+          <p>{{ cidadeinfo.id }}</p>
+        </div>
+
+        <div class="col-12 d-flex p-2 m-2" style="margin-top: 160px">
+          <div class="col-8">
+            <span class="input-group-text" id="">Dias na cidade</span>
+          </div>
+          <input #diasInput type="text" class="form-control dias" />
+        </div>
+        <div class="col-12">
+          <a
+            (click)="calcularMedia(cidadeinfo.id, diasInput.value)"
+            class="btn btn-primary"
+            >Informações</a
+          >
+        </div>
+        <div *ngIf="isMedia" class="col-12 d-flex justify-content-around">
+          <p class="font-weight-bold">Valor Medio Gasto:</p>
+          <p>{{ cidadeinfo.media }}</p>
         </div>
       </div>
     </div>
   </div>
+</div>

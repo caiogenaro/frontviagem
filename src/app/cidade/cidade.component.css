@@ -9,30 +9,43 @@
   justify-content: center;
   background-color: #a7ab51;
 }
+#content-info {
+  border: 1px solid black;
+  text-align: center;
+  display: flex;
+  justify-content: center;
 
+  background-color: #a7ab51;
+}
+
+.dias{
+  max-height: 38px;
+}
 .card {
   width: 250px;
   height: 230px;
   background-color: rgb(0, 0, 0);
 }
 
-
 .card-img-top {
-    position: absolute;
-    left: 50%;
-    height: 70%;
-    transform: translateX(-50%);
-    
-  }
+  position: absolute;
+  left: 50%;
+  height: 70%;
+  transform: translateX(-50%);
+}
+.row {
+  display: flex;
+  justify-content: center;
+}
 
-  h5 {
-    color: aliceblue;
-    position: absolute;
-    left: 50%;
-    top: 130px;
-    transform: translateX(-50%);
-  }
+h5 {
+  color: aliceblue;
+  position: absolute;
+  left: 50%;
+  top: 130px;
+  transform: translateX(-50%);
+}
 
-  p{
-    font-weight: bold;
-  }
+p {
+  font-weight: bold;
+}
