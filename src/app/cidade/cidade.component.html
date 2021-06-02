@@ -21,36 +21,42 @@
             <li class="page-item">
               <a class="page-link" href="#">Previous</a>
             </li>
-            <li class="page-item"><a class="page-link" href="#">1</a></li>
-            <li class="page-item"><a class="page-link" href="#">2</a></li>
-            <li class="page-item"><a class="page-link" href="#">3</a></li>
-            <li class="page-item"><a class="page-link" href="#">Next</a></li>
+            <li class="page-item active"><a (click)="getCidades()" class="page-link">1</a></li>
+            <li class="page-item"><a class="page-link" >2</a></li>
+            <li class="page-item"><a class="page-link" >3</a></li>
+            <li class="page-item"><a class="page-link">Next</a></li>
           </ul>
         </nav>
       </div>
     </div>
-    <div class="col-3" id="content-info">
+    <div class="col-4" id="content-info">
       <div *ngFor="let cidadeinfo of cidadesInfo" class="col-12 row">
-        <div class="card" id="photo-info">
-          <img src="{{ cidadeinfo.foto }}" class="card-img-top" alt="..." />
+        <div class="card"  id="photo-info" style="background-image: url({{ cidadeinfo.foto }});">
         </div>
-        <div class="col-12 d-flex justify-content-around">
-          <p class="font-weight-bold">Cidade:</p>
-          <p>{{ cidadeinfo.nome }}</p>
-        </div>
-        <div class="col-12 d-flex justify-content-around">
-          <p class="font-weight-bold">Valor:</p>
-          <p>{{ cidadeinfo.valor }}</p>
-        </div>
-        <div class="col-12 d-flex justify-content-around">
-          <p class="font-weight-bold">Comida:</p>
-          <p>{{ cidadeinfo.cozinha.nome }}</p>
-        </div>
-        <div class="col-12 d-flex justify-content-around">
+        <div class="col-12 d-flex" style="justify-content: space-evenly;">
           <p class="font-weight-bold">Id:</p>
           <p>{{ cidadeinfo.id }}</p>
         </div>
+        <div class="col-12 d-flex" style="justify-content: space-evenly;">
+          <p class="font-weight-bold">Cidade:</p>
+          <p>{{ cidadeinfo.nome }}</p>
+        </div>
+        <div class="col-12 d-flex" style="justify-content: space-evenly;">
+          <p class="font-weight-bold">Valor Passagem Ida e Volta:</p>
+          <p>{{ cidadeinfo.valor }}</p>
+        </div>
+        <div class="col-12 d-flex" style="justify-content: space-evenly;">
+          <p class="font-weight-bold">Comida:</p>
+          <p>{{ cidadeinfo.cozinha.nome }}</p>
+        </div>
+        <div class="col-12 d-flex" style="justify-content: space-evenly;">
+          <p class="font-weight-bold">Valor Refeicao:</p>
+          <p>{{ cidadeinfo.valorRefeicao }}</p>
+        </div>
 
+        <div class="col-12">
+          <p class="font-weight-bold">Calcule quantos reais vc irá gastar!</p>
+        </div>
         <div class="col-12 d-flex p-2 m-2" style="margin-top: 160px">
           <div class="col-8">
             <span class="input-group-text" id="">Dias na cidade</span>
@@ -61,7 +67,7 @@
           <a
             (click)="calcularMedia(cidadeinfo.id, diasInput.value)"
             class="btn btn-primary"
-            >Informações</a
+            >Calcular Media</a
           >
         </div>
         <div *ngIf="isMedia" class="col-12 d-flex justify-content-around">

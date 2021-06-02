@@ -63,6 +63,7 @@ export class HomeComponent implements OnInit {
       ],
       fotoCidade: [null, [Validators.required]],
       valorPassagem: [null, [Validators.required]],
+      valorRefeicao: [null, [Validators.required]],
       tipoCozinha: [null, Validators.required],
     });
   }
@@ -96,6 +97,7 @@ export class HomeComponent implements OnInit {
       nome: this.formularioCidades.value.nomeCidade,
       foto: this.formularioCidades.value.fotoCidade,
       valor: this.formularioCidades.value.valorPassagem,
+      valorRefeicao: this.formularioCidades.value.valorRefeicao,
       cozinha: {
         id: cozinha[0],
       },

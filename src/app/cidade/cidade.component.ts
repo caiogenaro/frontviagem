@@ -9,7 +9,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 })
 export class CidadeComponent implements OnInit {
   formularioCidades!: FormGroup;
-  cidades: any;
+  cidades: any = [];
 
   cidadesInfo: any = [];
   media: any = [];
@@ -29,7 +29,9 @@ export class CidadeComponent implements OnInit {
 
   //Pegar informaçoes das cidades
   async getCidades() {
-    this.cidades = await this.service.listarCidades();
+    const data: any = await this.service.listarCidades();
+    this.cidades = data.content;    
+    console.log(data)
   }
 
   //Metodo para Mostrar informações das cidades

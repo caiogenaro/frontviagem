@@ -22,7 +22,7 @@
   max-height: 38px;
 }
 .card {
-  width: 250px;
+  width: 350px;
   height: 230px;
   background-color: rgb(0, 0, 0);
 }
@@ -48,4 +48,9 @@ h5 {
 
 p {
   font-weight: bold;
+}
+
+#photo-info{
+    background-position: center;    
+    background-size: cover;
 }
