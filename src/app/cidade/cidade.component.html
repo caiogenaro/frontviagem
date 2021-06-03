@@ -18,13 +18,13 @@
       <div class="col-12" style="justify-content: flex-end; display: flex">
         <nav aria-label="Page navigation example">
           <ul class="pagination">
-            <li class="page-item">
-              <a (click)="getCidades($event)" class="page-link">Previous</a>
+            <li *ngIf="Pagina >= 1" class="page-item">
+              <a (click)="getCidades(Pagina - 1)" class="page-link">Previous</a>
             </li>
-            <li class="page-item active"><a (click)="getCidades($event)" class="page-link">1</a></li>
-            <li class="page-item"><a (click)="getCidades($event)" class="page-link" >2</a></li>
-            <li class="page-item"><a (click)="getCidades($event)" class="page-link" >3</a></li>
-            <li class="page-item"><a (click)="getCidades($event)" class="page-link">Next</a></li>
+            <li><a (click)="getCidades(Pagina = 1)" class="page-link">1</a></li>
+            <li class="page-item"><a  (click)="getCidades(Pagina = 2)" class="page-link" >2</a></li>
+            <li class="page-item"><a  (click)="getCidades(Pagina = 3)" class="page-link" >3</a></li>
+            <li *ngIf="Pagina <= 2" class="page-item"><a (click)="getCidades(Pagina + 1)" class="page-link">Next</a></li>
           </ul>
         </nav>
       </div>

@@ -10,21 +10,18 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 export class CidadeComponent implements OnInit {
   formularioCidades!: FormGroup;
   cidades: any = [];
+  Pagina: any = 0;
 
   cidadesInfo: any = [];
   media: any = [];
   isMedia: Boolean = false;
   numeroPage: number = 0;
-  initialValue = {
-    target: {
-      text: 1
-    }
-  }
+
 
   constructor(private formBuilder: FormBuilder, private service: Service) {}
 
   ngOnInit(): void {
-    this.getCidades(this.initialValue)       
+    this.getCidades(this.Pagina)       
  
   }
 
@@ -33,29 +30,36 @@ export class CidadeComponent implements OnInit {
       dias: [null, [Validators.required]]
     });
   }
-
-  //Pegar informaçoes das cidades
-  async getCidades(page: any) {
-
-    if(page.target.text == 'Previous'){
-      this.numeroPage = this.numeroPage - 1;
-    }
-    else if(page.target.text == 'Next'){
-      this.numeroPage += 1;
-    }
-    else{
-      this.numeroPage = parseInt(page.target.text) - 1
-    }
-
-    if(this.numeroPage <= 2 && this.numeroPage >= 0){
-      const data: any = await this.service.listarCidadesPage(this.numeroPage);
-      this.cidades = data.content; 
-    }
-    else{
-      console.log("Pagina não existentente")
-    }
+  async getCidades(page: any){
+    console.log(page)
+    this.Pagina = page;
+    const data: any = await this.service.listarCidadesPage(this.Pagina)
+    this.cidades = data.content
 
   }
+
+  //Pegar informaçoes das cidades
+  // async getCidades(page: any) {
+
+  //   if(page.target.text == 'Previous'){
+  //     this.numeroPage = this.numeroPage - 1;
+  //   }
+  //   else if(page.target.text == 'Next'){
+  //     this.numeroPage += 1;
+  //   }
+  //   else{
+  //     this.numeroPage = parseInt(page.target.text) - 1
+  //   }
+
+  //   if(this.numeroPage <= 2 && this.numeroPage >= 0){
+  //     const data: any = await this.service.listarCidadesPage(this.numeroPage);
+  //     this.cidades = data.content; 
+  //   }
+  //   else{
+  //     console.log("Pagina não existentente")
+  //   }
+
+  // }
 
   //Metodo para Mostrar informações das cidades
   async infoCidades(id: any) {
