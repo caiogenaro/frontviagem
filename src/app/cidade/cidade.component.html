@@ -19,12 +19,12 @@
         <nav aria-label="Page navigation example">
           <ul class="pagination">
             <li class="page-item">
-              <a class="page-link" href="#">Previous</a>
+              <a (click)="getCidades($event)" class="page-link">Previous</a>
             </li>
-            <li class="page-item active"><a (click)="getCidades()" class="page-link">1</a></li>
-            <li class="page-item"><a class="page-link" >2</a></li>
-            <li class="page-item"><a class="page-link" >3</a></li>
-            <li class="page-item"><a class="page-link">Next</a></li>
+            <li class="page-item active"><a (click)="getCidades($event)" class="page-link">1</a></li>
+            <li class="page-item"><a (click)="getCidades($event)" class="page-link" >2</a></li>
+            <li class="page-item"><a (click)="getCidades($event)" class="page-link" >3</a></li>
+            <li class="page-item"><a (click)="getCidades($event)" class="page-link">Next</a></li>
           </ul>
         </nav>
       </div>

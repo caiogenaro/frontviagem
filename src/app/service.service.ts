@@ -24,6 +24,10 @@ export class Service {
   listarCidades() {
     return this.httpClient.get(`${this.URL}/cidades`).toPromise();
   }
+  listarCidadesPage(numeroPage: any) {
+    const page = { page: numeroPage};
+    return this.httpClient.get(`${this.URL}/cidades/listarPaginado`, { params: page}).toPromise();
+  }
   listarCidadesId(id: number) {
     return this.httpClient.get(`${this.URL}/cidades/${id}`).toPromise();
   }

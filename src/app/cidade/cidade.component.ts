@@ -14,11 +14,18 @@ export class CidadeComponent implements OnInit {
   cidadesInfo: any = [];
   media: any = [];
   isMedia: Boolean = false;
+  numeroPage: number = 0;
+  initialValue = {
+    target: {
+      text: 1
+    }
+  }
 
   constructor(private formBuilder: FormBuilder, private service: Service) {}
 
   ngOnInit(): void {
-    this.getCidades();
+    this.getCidades(this.initialValue)       
+ 
   }
 
   iniciarFormMedia() {
@@ -28,10 +35,26 @@ export class CidadeComponent implements OnInit {
   }
 
   //Pegar informaçoes das cidades
-  async getCidades() {
-    const data: any = await this.service.listarCidades();
-    this.cidades = data.content;    
-    console.log(data)
+  async getCidades(page: any) {
+
+    if(page.target.text == 'Previous'){
+      this.numeroPage = this.numeroPage - 1;
+    }
+    else if(page.target.text == 'Next'){
+      this.numeroPage += 1;
+    }
+    else{
+      this.numeroPage = parseInt(page.target.text) - 1
+    }
+
+    if(this.numeroPage <= 2 && this.numeroPage >= 0){
+      const data: any = await this.service.listarCidadesPage(this.numeroPage);
+      this.cidades = data.content; 
+    }
+    else{
+      console.log("Pagina não existentente")
+    }
+
   }
 
   //Metodo para Mostrar informações das cidades
