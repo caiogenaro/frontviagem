@@ -25,41 +25,21 @@ export class CidadeComponent implements OnInit {
  
   }
 
+  //Inciar o form de Media
   iniciarFormMedia() {
     this.media = this.formBuilder.group({
       dias: [null, [Validators.required]]
     });
   }
-  async getCidades(page: any){
-    console.log(page)
-    this.Pagina = page;
-    const data: any = await this.service.listarCidadesPage(this.Pagina)
+
+  //Listar cidades com parametro de paginacao
+  async getCidades(query: any){
+    this.Pagina = query;
+    const page = { page: query};
+    const data: any = await this.service.listarCidadesPage(page)
     this.cidades = data.content
 
   }
-
-  //Pegar informaçoes das cidades
-  // async getCidades(page: any) {
-
-  //   if(page.target.text == 'Previous'){
-  //     this.numeroPage = this.numeroPage - 1;
-  //   }
-  //   else if(page.target.text == 'Next'){
-  //     this.numeroPage += 1;
-  //   }
-  //   else{
-  //     this.numeroPage = parseInt(page.target.text) - 1
-  //   }
-
-  //   if(this.numeroPage <= 2 && this.numeroPage >= 0){
-  //     const data: any = await this.service.listarCidadesPage(this.numeroPage);
-  //     this.cidades = data.content; 
-  //   }
-  //   else{
-  //     console.log("Pagina não existentente")
-  //   }
-
-  // }
 
   //Metodo para Mostrar informações das cidades
   async infoCidades(id: any) {
@@ -67,7 +47,7 @@ export class CidadeComponent implements OnInit {
     if (this.cidadesInfo) {
       this.cidadesInfo = [];
       this.cidadesInfo.push(data);
-      this.isMedia = false;      
+      this.isMedia = false;
     }
   }
 
@@ -79,6 +59,5 @@ export class CidadeComponent implements OnInit {
       this.cidadesInfo.push(data);
       this.isMedia = true;
     }
-    console.log(this.cidadesInfo);  
   }
 }

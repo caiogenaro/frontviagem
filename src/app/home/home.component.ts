@@ -1,6 +1,11 @@
 import { Service } from './../service.service';
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import {
+  FormGroup,
+  FormBuilder,
+  Validators,
+  FormControl,
+} from '@angular/forms';
 
 @Component({
   selector: 'app-home',
@@ -15,6 +20,8 @@ export class HomeComponent implements OnInit {
   cozinhas: any;
   isCadastroCozinha: boolean = false;
   isCadastroCidade: boolean = false;
+  sucessoCozinha: boolean = false;
+  sucessoCidade: boolean = false;
 
   ngOnInit(): void {
     this.iniciarFormCozinha();
@@ -26,14 +33,10 @@ export class HomeComponent implements OnInit {
   cadastroCozinha() {
     this.isCadastroCozinha = !this.isCadastroCozinha;
     this.isCadastroCidade = false;
-
-    console.log(this.isCadastroCozinha);
   }
   cadastroCidade() {
     this.isCadastroCidade = !this.isCadastroCidade;
     this.isCadastroCozinha = false;
-
-    console.log(this.isCadastroCidade);
   }
 
   // Iniciar o Modulo e validacoes do FormGroup no Component
@@ -43,7 +46,7 @@ export class HomeComponent implements OnInit {
         null,
         [
           Validators.required,
-          Validators.minLength(4),
+          Validators.minLength(3),
           Validators.maxLength(10),
         ],
       ],
@@ -57,7 +60,7 @@ export class HomeComponent implements OnInit {
         null,
         [
           Validators.required,
-          Validators.minLength(4),
+          Validators.minLength(3),
           Validators.maxLength(10),
         ],
       ],
@@ -76,8 +79,6 @@ export class HomeComponent implements OnInit {
           nome: value.nome,
           id: value.id,
         }));
-
-        console.log(this.cozinhas);
       },
       (error: any) => {
         console.log(error);
@@ -85,24 +86,54 @@ export class HomeComponent implements OnInit {
     );
   }
 
+  //Metodo de Validação
+  protected forceValidateAllFormFields(formGroup: FormGroup) {
+    Object.keys(formGroup.controls).forEach((field) => {
+      const control = formGroup.get(field);
+      if (control instanceof FormControl && control.enabled) {
+        control.markAsTouched({ onlySelf: true });
+        control.markAsDirty({ onlySelf: true });
+      } else if (control instanceof FormGroup) {
+        this.forceValidateAllFormFields(control);
+      }
+    });
+  }
+
   // Metodos de Cadastro para enviar ao Backend
   salvarCozinha() {
-    const cozinha = JSON.stringify(this.formulario.value);
-    this.service.incluirCozinha(cozinha);
+    //Check se o formluario atual está valido e set no atributo para valid
+    this.forceValidateAllFormFields(this.formulario);
+    this.formulario.updateValueAndValidity();
+
+    if (this.formulario.valid) {
+      const cozinha = JSON.stringify(this.formulario.value);
+      this.service.incluirCozinha(cozinha);
+      alert('Cozinha Cadastrada com Sucesso');
+    } else {
+      console.log('cozinha invalida');
+    }
   }
   salvarCidade() {
+    //Check se o formluario atual está valido e set no atributo para valid
+    this.forceValidateAllFormFields(this.formularioCidades);
+    this.formulario.updateValueAndValidity();
     //Restruturar para enviar para o Backend
-    const cozinha = this.formularioCidades.value.tipoCozinha.split(' ');
-    const cidade = {
-      nome: this.formularioCidades.value.nomeCidade,
-      foto: this.formularioCidades.value.fotoCidade,
-      valor: this.formularioCidades.value.valorPassagem,
-      valorRefeicao: this.formularioCidades.value.valorRefeicao,
-      cozinha: {
-        id: cozinha[0],
-      },
-    };
+    if (this.formularioCidades.valid) {
+      const cozinha = this.formularioCidades.value.tipoCozinha.split(' ');
+      const cidade = {
+        nome: this.formularioCidades.value.nomeCidade,
+        foto: this.formularioCidades.value.fotoCidade,
+        valor: this.formularioCidades.value.valorPassagem,
+        valorRefeicao: this.formularioCidades.value.valorRefeicao,
+        cozinha: {
+          id: cozinha[0],
+        },
+      };
 
-    this.service.incluirCidade(JSON.stringify(cidade));
+      this.service.incluirCidade(JSON.stringify(cidade));
+      alert('Cozinha Cadastrada com Sucesso');
+    } else {
+      console.log('formulario invalido');
+    }
   }
 }

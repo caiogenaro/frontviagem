@@ -21,9 +21,9 @@
             <li *ngIf="Pagina >= 1" class="page-item">
               <a (click)="getCidades(Pagina - 1)" class="page-link">Previous</a>
             </li>
-            <li><a (click)="getCidades(Pagina = 1)" class="page-link">1</a></li>
-            <li class="page-item"><a  (click)="getCidades(Pagina = 2)" class="page-link" >2</a></li>
-            <li class="page-item"><a  (click)="getCidades(Pagina = 3)" class="page-link" >3</a></li>
+            <li><a (click)="getCidades(Pagina = 0)" class="page-link">1</a></li>
+            <li class="page-item"><a  (click)="getCidades(Pagina = 1)" class="page-link" >2</a></li>
+            <li class="page-item"><a  (click)="getCidades(Pagina = 2)" class="page-link" >3</a></li>
             <li *ngIf="Pagina <= 2" class="page-item"><a (click)="getCidades(Pagina + 1)" class="page-link">Next</a></li>
           </ul>
         </nav>
@@ -31,7 +31,7 @@
     </div>
     <div class="col-4" id="content-info">
       <div *ngFor="let cidadeinfo of cidadesInfo" class="col-12 row">
-        <div class="card"  id="photo-info" style="background-image: url(cidadeinfo.foto );">
+        <div class="card"  id="photo-info" style="background-image: url({{cidadeinfo.foto}} );">
         </div>
         <div class="col-12 d-flex" style="justify-content: space-evenly;">
           <p class="font-weight-bold">Id:</p>

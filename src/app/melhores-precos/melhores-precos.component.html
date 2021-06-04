@@ -4,11 +4,11 @@
     <table class="table table-dark">
         <thead>
           <tr>
-            <th scope="col">id</th>
-            <th scope="col">Nome</th>
-            <th scope="col">Valor Passagem Ida Volta</th>
-            <th scope="col">Valor Refeicao</th>
-            <th scope="col">Tipo Comida</th>
+            <th scope="col">id <i (click)="getCidades(Ordenacao = 'id')" class="fa fa-fw fa-sort"></i></th>
+            <th scope="col">Nome <i (click)="getCidades(Ordenacao = 'nome')" class="fa fa-fw fa-sort"></i></th>
+            <th scope="col">Valor Passagem Ida Volta <i (click)="getCidades(Ordenacao = 'valor')" class="fa fa-fw fa-sort"></i></th>
+            <th scope="col">Valor Refeicao <i (click)="getCidades(Ordenacao = 'valorRefeicao')" class="fa fa-fw fa-sort"></i></th>
+            <th scope="col">Tipo Comida <i (click)="getCidades(Ordenacao = 'cozinha.nome')" class="fa fa-fw fa-sort"></i></th>
           </tr>
         </thead>
         <tbody>
@@ -21,4 +21,17 @@
           </tr>
         </tbody>
       </table>
+      <div class="col-12" style="justify-content: flex-end; display: flex">
+        <nav aria-label="Page navigation example">
+          <ul class="pagination">
+            <li *ngIf="Pagina >= 1" class="page-item">
+              <a (click)="getCidades(Pagina - 1)" class="page-link">Previous</a>
+            </li>
+            <li><a (click)="getCidades(Pagina = 0)" class="page-link">1</a></li>
+            <li class="page-item"><a  (click)="getCidades(Pagina = 1)" class="page-link" >2</a></li>
+            <li class="page-item"><a  (click)="getCidades(Pagina = 2)" class="page-link" >3</a></li>
+            <li *ngIf="Pagina <= 2" class="page-item"><a (click)="getCidades(Pagina + 1)" class="page-link">Next</a></li>
+          </ul>
+        </nav>
+      </div>
 </div>

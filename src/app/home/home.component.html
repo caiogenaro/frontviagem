@@ -19,6 +19,8 @@
         formControlName="nome"
         aria-label="First name"
       />
+      <app-mensagem-validacao formControlName="nome" type="required" errorMessage="Nome é obrigatório"></app-mensagem-validacao>      
+      <app-mensagem-validacao formControlName="nome" type="minlength" errorMessage="Minimo 3 e maximo de 10 Letras"></app-mensagem-validacao>
     </div>
 
     <div class="p-col-1">
@@ -40,6 +42,8 @@
           formControlName="nomeCidade"
           aria-label="Nome Cidade"
         />
+        <app-mensagem-validacao formControlName="nomeCidade" type="required" errorMessage="Nome da Cidade é obrigatório"></app-mensagem-validacao>  
+        <app-mensagem-validacao formControlName="nomeCidade" type="minlength" errorMessage="Minimo 3 e maximo de 10 Letras"></app-mensagem-validacao>
       </div>
       <div class="col-6">
         <input
@@ -49,6 +53,7 @@
           formControlName="valorPassagem"
           aria-label="Valor Passagem"
         />
+        <app-mensagem-validacao formControlName="valorPassagem" type="required" errorMessage="Valor da Passagem é obrigatório"></app-mensagem-validacao>
       </div>
       <div class="col-12">
         <input
@@ -59,6 +64,7 @@
           formControlName="fotoCidade"
           aria-label="Foto Cidade"
         />
+        <app-mensagem-validacao formControlName="fotoCidade" type="required" errorMessage="Foto da Cidade é obrigatório"></app-mensagem-validacao>
       </div>
       <div class="col-12">
         <input
@@ -69,6 +75,7 @@
           formControlName="valorRefeicao"
           aria-label="Valor Refeicao"
         />
+        <app-mensagem-validacao formControlName="valorRefeicao" type="required" errorMessage="Valor da Refeicao é obrigatório"></app-mensagem-validacao>
       </div>
 
       <div class="col-12" style="display: flex; justify-content: space-between;" >
@@ -82,6 +89,7 @@
             <option>Escolha uma Cozinha</option>
             <option *ngFor="let cozinha of cozinhas">{{cozinha.id }} {{ cozinha.nome }}</option>
           </select>
+          <app-mensagem-validacao formControlName="tipoCozinha" type="required" errorMessage="Tipo Cozinha é obrigatório"></app-mensagem-validacao>
         </div>
 
         <div class="col-6" style="display: flex; justify-content: flex-end; margin-top: 23px !important;">
@@ -89,6 +97,10 @@
             Cadastrar Cidade
           </button>
         </div>
+        <div *ngIf="sucessoCozinha" class="col-12" style="display: flex; justify-content: flex-end; margin-top: 23px !important;">
+          <h1>Cidade Cadastrada com Sucesso</h1>
+        </div>
+
       </div>
     </div>
   </form>
