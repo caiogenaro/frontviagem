@@ -18,9 +18,11 @@
         placeholder="First name"
         formControlName="nome"
         aria-label="First name"
+        minlength="3"
+        maxlength="10"
       />
-      <app-mensagem-validacao formControlName="nome" type="required" errorMessage="Nome é obrigatório"></app-mensagem-validacao>      
-      <app-mensagem-validacao formControlName="nome" type="minlength" errorMessage="Minimo 3 e maximo de 10 Letras"></app-mensagem-validacao>
+      <!-- <app-mensagem-validacao formControlName="nome" type="required" errorMessage="Nome é obrigatório"></app-mensagem-validacao>      
+      <app-mensagem-validacao formControlName="nome" type="minlength" errorMessage="Minimo 3 e maximo de 10 Letras"></app-mensagem-validacao> -->
     </div>
 
     <div class="p-col-1">
@@ -41,6 +43,7 @@
           placeholder="Nome da Cidade"
           formControlName="nomeCidade"
           aria-label="Nome Cidade"
+          
         />
         <app-mensagem-validacao formControlName="nomeCidade" type="required" errorMessage="Nome da Cidade é obrigatório"></app-mensagem-validacao>  
         <app-mensagem-validacao formControlName="nomeCidade" type="minlength" errorMessage="Minimo 3 e maximo de 10 Letras"></app-mensagem-validacao>

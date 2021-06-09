@@ -29,14 +29,19 @@ export class MensagemValidacaoComponent implements ControlValueAccessor {
     onTouched = () => { };
 
 
+    //Valor Escrito
     writeValue(obj: any): void {
     }
+
+    //Ver se mudou o input
     registerOnChange(fn: any): void {
         this.onChange = fn;
     }
+
+    //Ver se foi tocado o input
     registerOnTouched(fn: any): void {
         this.onTouched = fn;
-    }
+    }    
     setDisabledState?(isDisabled: boolean): void {
     }
 
